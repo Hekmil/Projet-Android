@@ -6,5 +6,53 @@
     tools:context=".MainActivity">
 
 
+    <TextView
+        android:id="@+id/txtV1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="127dp"
+        android:text="Utilisateur :" />
 
+    <TextView
+        android:id="@+id/txtV2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/txtV1"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="179dp"
+        android:text="Mot de passe :" />
+
+    <EditText
+        android:id="@+id/edtTxt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="107dp"
+        android:layout_marginEnd="63dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Nom" />
+
+    <EditText
+        android:id="@+id/edtTxt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edtTxt1"
+        android:layout_toEndOf="@+id/txtV2"
+        android:ems="10"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/btn1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="177dp"
+        android:text="Se connecter"
+        android:onClick="Connect"/>
 </RelativeLayout>
