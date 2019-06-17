@@ -25,7 +25,10 @@ public class MainActivity extends AppCompatActivity
         String monNom = edtTxt1.getText().toString();
         String monMdp = edtTxt2.getText().toString();
 
-        if((monNom.equals("Louis")) && (monMdp.equals("abc")))
+        if((monNom.equals("Louis")) && (monMdp.equals("abc")) ||
+                (monNom.equals("Jerem")) && (monMdp.equals("abc")) ||
+                (monNom.equals("Clement")) && (monMdp.equals("abc")) ||
+                (monNom.equals("Anthony")) && (monMdp.equals("abc")))
         {
             startActivity(new Intent(this, Vue2.class));
         }
