@@ -3,6 +3,7 @@ package com.example.louis.projet2;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -32,6 +33,8 @@ public class Accueil extends AppCompatActivity
                 (monNom.equals("Clement")) && (monMdp.equals("abc")) ||
                 (monNom.equals("Anthony")) && (monMdp.equals("abc")))
         {
+            Log.e("Testtt", "Je passe par la");
+
             startActivity(new Intent(this, MapsActivity.class));
         }
         else

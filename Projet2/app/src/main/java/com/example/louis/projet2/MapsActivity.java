@@ -1,13 +1,16 @@
 package com.example.louis.projet2;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.location.LocationServices;
@@ -23,23 +26,22 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
-import java.util.ArrayList;
 
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 {
+    Question question = new Question();
     private GoogleMap mMap;
     FusedLocationProviderClient fusedLocationClient;
     Location currentLocation;
     Location targetLocation;
     String result;
-    ArrayList<Question> questions = new ArrayList<>();
-    Integer questionNumber;
     Marker mCurrent;
 
 
     public void onClickLocation(View v)
     {
+        Log.e("Testtt", "Click bouton");
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
         {
@@ -52,12 +54,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
+        Log.e("Testtt", "0");
         fusedLocationClient.getLastLocation().addOnSuccessListener(MapsActivity.this, new OnSuccessListener<Location>()
         {
             public void onSuccess(Location location)
             {
+                Log.e("Testtt", "1");
                 if (location != null)
                 {
+                    Log.e("Testtt", "2");
                     currentLocation = location;
                     System.out.println(location.getLatitude() + " : " + location.getLongitude());
                 }
@@ -67,16 +72,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Location.distanceBetween(targetLocation.getLatitude(), targetLocation.getLongitude(), currentLocation.getLatitude(), currentLocation.getLongitude(), distance);
 
                 if (mCurrent != null)
+                {
                     mCurrent.remove();
+                }
 
                 LatLng current = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
 
                 mCurrent = mMap.addMarker(new MarkerOptions().position(current).title("Votre position"));
                 mCurrent.setTag(0);
+                Log.e("Testtt", "ça c'est ok 2");
 
 
-                if (distance[0] < 30.0)
-                {
+                if (distance[0] < 30.0) {
                     Intent i = new Intent(MapsActivity.this, QuestionActivity.class);
                     startActivity(i);
                 } else {
@@ -96,11 +103,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        requestPermissions();
-
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient().getLastLocation();
-
-        targetLocation = new Location();
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
     }
 
 
@@ -118,9 +130,48 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng maisonLouis = new LatLng(47.442453, -0.494956);
+        LatLng cathedrale = new LatLng(47.470895, -0.555397 );
+        LatLng ralliement = new LatLng(47.471262, -0.551996);
+        LatLng heron = new LatLng(47.469162, -0.570317);
+        LatLng kiosque = new LatLng(47.470278, -0.545784);
+        TextView txtv4 = (TextView) findViewById(R.id.txtv4);
+        Log.e("Testtt", "Question actuelle" + question.getCurrentQuestion());
+
+
+        if(question.getCurrentQuestion() == 1)
+        {
+            txtv4.setText("Rendez vous au 119 rue Jean Jaures, 49800 TRELAZE");
+            mMap.addMarker(new MarkerOptions().position(maisonLouis).title("Louis"));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(maisonLouis));
+
+        }
+        else
+        {
+            if(question.getCurrentQuestion() == 2)
+            {
+                txtv4.setText("Rendez vous à la cathédrale d'Angers pour découvrir la prochaine question");
+                mMap.addMarker(new MarkerOptions().position(cathedrale).title("cathédrale"));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(cathedrale));
+            }
+            else
+            {
+                if(question.getCurrentQuestion() == 3)
+                {
+                    txtv4.setText("Rendez vous place du ralliement pour découvrir la prochaine question");
+                    mMap.addMarker(new MarkerOptions().position(ralliement).title("ralliement"));
+                    mMap.moveCamera(CameraUpdateFactory.newLatLng(ralliement));
+                }
+                else
+                {
+                    if(question.getCurrentQuestion() == 4)
+                    {
+                        txtv4.setText("Rendez vous au Héron Carré pour découvrir la prochaine question");
+                        mMap.addMarker(new MarkerOptions().position(heron).title("heron"));
+                        mMap.moveCamera(CameraUpdateFactory.newLatLng(heron));
+                    }
+                }
+            }
+        }
     }
 }

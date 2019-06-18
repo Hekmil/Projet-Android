@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 public class QuestionActivity extends AppCompatActivity
 {
-    private static int numeroQuestion = 1;
     Question question = new Question();
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -24,20 +23,20 @@ public class QuestionActivity extends AppCompatActivity
         Button btn5 = (Button)findViewById(R.id.btn5);
         Button btn6 = (Button)findViewById(R.id.btn6);
 
-        txtv5.setText(question.getQuestion(numeroQuestion, 0));
-        btn3.setText(question.getQuestion(numeroQuestion, 1));
-        btn4.setText(question.getQuestion(numeroQuestion, 2));
-        btn5.setText(question.getQuestion(numeroQuestion, 3));
-        btn6.setText(question.getQuestion(numeroQuestion, 4));
+        txtv5.setText(question.getQuestion(question.currentQuestion, 0));
+        btn3.setText(question.getQuestion(question.currentQuestion, 1));
+        btn4.setText(question.getQuestion(question.currentQuestion, 2));
+        btn5.setText(question.getQuestion(question.currentQuestion, 3));
+        btn6.setText(question.getQuestion(question.currentQuestion, 4));
     }
 
     public void Valider(View v)
     {
         Button buttonPressed = (Button) v;
-        if(question.checkAnswer(numeroQuestion, buttonPressed.getText().toString()))
+        if(question.checkAnswer(question.currentQuestion, buttonPressed.getText().toString()))
         {
             Toast.makeText(this, "Bonne réponse ! Rendez vous au lieu suivant !", Toast.LENGTH_LONG);
-            numeroQuestion ++;
+            question.currentQuestion ++;
             startActivity(new Intent(this, MapsActivity.class));
         }
         else
