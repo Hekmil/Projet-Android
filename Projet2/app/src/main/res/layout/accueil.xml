@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="177dp"
-        android:text="Se connecter"
-        android:onClick="Connect"/>
+        android:layout_marginBottom="232dp"
+        android:onClick="Connect"
+        android:text="Se connecter" />
 </RelativeLayout>
