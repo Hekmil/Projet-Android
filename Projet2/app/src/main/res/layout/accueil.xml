@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,17 +13,18 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="127dp"
+        android:layout_marginStart="58dp"
+        android:layout_marginTop="195dp"
         android:text="Utilisateur :" />
 
     <TextView
         android:id="@+id/txtV2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/txtV1"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="179dp"
+        android:layout_marginStart="46dp"
+        android:layout_marginTop="265dp"
         android:text="Mot de passe :" />
 
     <EditText
@@ -31,27 +33,48 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="107dp"
-        android:layout_marginEnd="63dp"
+        android:layout_marginTop="183dp"
+        android:layout_marginEnd="24dp"
         android:ems="10"
-        android:hint="Nom"
-        android:inputType="textPersonName"
-        android:text="Louis" />
+        android:hint="Utilisateur"
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/edtTxt2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/edtTxt1"
-        android:layout_toEndOf="@+id/txtV2"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="168dp"
+        android:layout_marginTop="251dp"
         android:ems="10"
+        android:hint="Mot de passe"
         android:inputType="textPassword" />
 
     <Button
         android:id="@+id/btn1"
+        style="@style/Widget.AppCompat.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="338dp"
         android:onClick="Connect"
         android:text="Se connecter" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="92dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="32dp"
+        android:fontFamily="casual"
+        android:text="RALLYE QUIZ"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@color/colorAccent"
+        android:textSize="60sp" />
+
 </RelativeLayout>
